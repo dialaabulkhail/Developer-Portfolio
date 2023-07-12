@@ -1,0 +1,155 @@
+/* Import the fonts from the local NPM package 'fontsource'. You can copy the import statements to use whichever font types you need. */
+@import '@fontsource/public-sans/300.css';
+@import '@fontsource/public-sans/400.css';
+@import '@fontsource/public-sans/400-italic.css';
+@import '@fontsource/public-sans/600.css';
+@import '@fontsource/public-sans/700.css';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Theme Classes for light and dark mode */
+
+.light {
+  --color-fore-primary: #606C5D;
+  --color-fore-secondary: hsla(240, 4%, 16%);
+  --color-fore-subtle: hsla(218, 17%, 35%);
+
+  --color-back-primary: #F5F2E7
+  ;
+  --color-back-secondary: hsla(240, 6%, 93%);
+  --color-back-subtle: hsla(210, 38%, 92%);
+
+  --color-accent: #FF9EAA;
+  --color-second-accent: #FFD0D0;
+  --color-back-accent: hsla(217, 100%, 81%);
+}
+
+.dark {
+  --color-fore-primary: hsla(214, 32%, 91%);
+  --color-fore-secondary: hsla(214, 32%, 91%);
+  --color-fore-subtle: hsla(214, 20%, 69%);
+
+  --color-back-primary: hsla(228, 10%, 11%);
+  --color-back-secondary: hsla(221, 39%, 8%);
+  --color-back-subtle: hsla(221, 39%, 16%);
+
+  --color-accent: #F1C376;
+  --color-second-accent: #F7E6C4;
+  --color-back-accent: #FFF4F4;
+}
+
+/* End Theme Classes */
+
+/* Custom Classes */
+
+.nav--item {
+  position: relative;
+}
+.nav--item::after,
+.nav--item:focus::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(
+    200deg,
+    var(--color-accent),
+    var(--color-second-accent)
+  );
+  border-radius: 50px;
+  bottom: -1.5px;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 150ms ease-in-out;
+}
+
+.nav--item:hover:after,
+.nav--item:focus::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.filter--active {
+  position: relative;
+  z-index: -1;
+}
+
+.filter--active::after,
+.filter--active:focus::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(
+    200deg,
+    var(--color-accent),
+    var(--color-second-accent)
+  );
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform 150ms ease-in-out;
+}
+
+.minimal--border {
+  position: relative;
+}
+.minimal--border::before {
+  content: '';
+  position: absolute;
+  background: var(--color-accent);
+  top: 50%;
+  left: 0;
+  width: 6px;
+  height: 2px;
+  margin: 0 -0.5rem;
+  border-radius: 5px;
+}
+.minimal--border::after {
+  content: '';
+  position: absolute;
+  background: var(--color-accent);
+  top: 50%;
+  right: 0;
+  width: 6px;
+  height: 2px;
+  margin: 0 -0.5rem;
+  border-radius: 5px;
+}
+
+/* End Custom Classes */
+
+@layer base {
+  ::-moz-selection {
+    background: var(--color-accent);
+    color: var(--color-back-primary);
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-back-primary);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-back-primary);
+    background-image: url("https://images.unsplash.com/photo-1688530324360-33002e7f9736?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: fixed;
+    background-blend-mode: multiply;
+    color: var(--color-fore-primary);
+    @apply overflow-x-hidden antialiased;
+  }
+
+  .full-width-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+}
